@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package com.example.greeting;
+
+option go_package = "github.com/xyz123/greeterpb";
+option java_package = "com.example.java.greeting";
+option java_multiple_files = true;
+
+message HelloRequest {
+  string name = 1;
+}
+
+message HelloReply {
+  string message = 1;
+}

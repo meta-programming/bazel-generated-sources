@@ -1,0 +1,29 @@
+"""Provides a simple way to test your rules as an external workspace.
+Add a basic smoke-test target below.
+"""
+
+load("@bazel_skylib//rules:build_test.bzl", "build_test")
+load("@gazelle//:def.bzl", "gazelle")
+load("@bazel_generated_sources//:defs.bzl", "go_srcs_tar")
+# load("@com_myorg_rules_mylang//mylang:defs.bzl", "...")
+
+# Replace with a usage of your rule/macro
+filegroup(name = "empty")
+
+build_test(
+    name = "smoke_test",
+    targets = [
+        # targets you add above
+        ":empty",
+    ],
+)
+
+# gazelle:prefix github.com/meta-programming/bazel-generated-sources/e2e/smoke
+gazelle(name = "gazelle")
+
+go_srcs_tar(
+    name = "go_srcs",
+    deps = [
+        "//proto/greeter:greeterpb_go_proto",
+    ]
+)
